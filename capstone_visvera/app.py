@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import os
 from datetime import datetime
 
 # --- PAGE CONFIG ---
@@ -8,18 +9,23 @@ st.set_page_config(page_title="Visvera | Interview Evaluation", layout="wide", p
 # --- TITLE ---
 st.title("🎯 Visvera - Interview Evaluation Dashboard")
 
-# --- LOAD DATA FUNCTION ---
-def load_json(path):
+# --- PATH SETUP (biar file /data selalu bisa diakses di cloud) ---
+BASE_DIR = os.path.dirname(__file__)
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
+def load_json(filename):
+    """Load JSON file safely from the /data folder"""
+    path = os.path.join(DATA_DIR, filename)
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
-    except:
+    except FileNotFoundError:
         return None
 
 # --- LOAD FILES ---
-verbal_data = load_json("data/hasil_final_evaluasi_assesment_verbal.json")
-nonverbal_data = load_json("data/hasil_final_evaluasi_assesment_noVerbal.json")
-final_data = load_json("data/hasil_final_evaluasi_assesment.json")
+verbal_data = load_json("hasil_final_evaluasi_assesment_verbal.json")
+nonverbal_data = load_json("hasil_final_evaluasi_assesment_noVerbal.json")
+final_data = load_json("hasil_final_evaluasi_assesment.json")
 
 # --- SIDEBAR ---
 st.sidebar.header("📂 Data Sources")
@@ -40,7 +46,7 @@ with tab1:
                 st.write(f"**Formula Score:** {s['verbal_formula_score']}")
                 st.write(f"**Reason:** {s['reason']}")
     else:
-        st.warning("Data verbal belum tersedia. Pastikan file hasil_final_evaluasi_assesment_verbal.json ada di folder /data")
+        st.warning("⚠️ Data verbal belum tersedia. Pastikan file `hasil_final_evaluasi_assesment_verbal.json` ada di folder `/data`.")
 
 # --- TAB 2: NONVERBAL ---
 with tab2:
@@ -59,7 +65,7 @@ with tab2:
         st.write("📋 **Summary:**")
         st.info(nv["summary"])
     else:
-        st.warning("Data nonverbal belum tersedia. Pastikan file hasil_final_evaluasi_assesment_noVerbal.json ada di folder /data")
+        st.warning("⚠️ Data nonverbal belum tersedia. Pastikan file `hasil_final_evaluasi_assesment_noVerbal.json` ada di folder `/data`.")
 
 # --- TAB 3: FINAL RESULT ---
 with tab3:
@@ -84,4 +90,4 @@ with tab3:
         st.subheader("📝 Overall Notes")
         st.success(final_data["overallNotes"])
     else:
-        st.warning("Data final belum tersedia. Pastikan file hasil_final_evaluasi_assesment.json ada di folder /data")
+        st.warning("⚠️ Data final belum tersedia. Pastikan file `hasil_final_evaluasi_assesment.json` ada di folder `/data`.")
