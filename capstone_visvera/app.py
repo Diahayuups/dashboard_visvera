@@ -16,6 +16,7 @@ st.markdown("""
     font-size: 15px;
     text-align: center;
     line-height: 1.6;
+    margin-bottom: 20px;
 ">
     <h3 style="color:#FFFFFF; font-weight:600; margin-bottom:10px;">📊 Visvera – Interview Evaluation Dashboard</h3>
 
@@ -38,8 +39,13 @@ st.markdown("""
         Dashboard ini berfungsi sebagai media visualisasi utama untuk memperlihatkan hasil penilaian kandidat, alasan penilaian, 
         serta ringkasan keputusan akhir dari sistem secara terstruktur.
     </p>
+
+    <p style="font-size:13px; color:#AAAAAA; margin-top:10px;">
+        📁 Data Source: Local pipeline results (JSON output files)
+    </p>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 # --- PATH SETUP (biar file /data selalu bisa diakses di cloud) ---
@@ -124,4 +130,5 @@ with tab3:
         st.success(final_data["overallNotes"])
     else:
         st.warning("⚠️ Data final belum tersedia. Pastikan file `hasil_final_evaluasi_assesment.json` ada di folder `/data`.")
+
 
