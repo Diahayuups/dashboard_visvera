@@ -7,43 +7,26 @@ from datetime import datetime
 st.set_page_config(page_title="Visvera | Interview Evaluation", layout="wide", page_icon="🧠")
 
 # --- TITLE ---
-import streamlit as st
-
 st.markdown("""
-<div style="
-    background-color: rgba(255, 255, 255, 0.04);
-    padding: 16px 20px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.1);
-    font-size: 15px;
-    text-align: center;
-    line-height: 1.6;
-    margin-bottom: 20px;
-">
-    <h3 style="color:#FFFFFF; font-weight:600; margin-bottom:10px;">📊 Visvera – Interview Evaluation Dashboard</h3>
+<div style="background-color: rgba(255, 255, 255, 0.04);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 15px;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 25px;">
 
-    <p style="color:#DDDDDD;">
+    <h3 style="color:#FFFFFF; font-weight:600; margin-bottom:12px;">
+        📊 Visvera – Interview Evaluation Dashboard
+    </h3>
+
+    <p style="color:#DDDDDD; margin-top:0;">
         This dashboard visualizes the final results of the <b>Visvera AI Interview Evaluation</b> pipeline executed locally.<br>
         It displays data from three main sources — <b>Verbal</b>, <b>Nonverbal</b>, and <b>Final Assessment</b> — 
         all generated directly from our custom-built models.<br><br>
-
         The dashboard serves as the main visualization interface to present candidate evaluation scores, reasoning details, 
         and overall system decisions in a clear and structured format.
-    </p>
-
-    <hr style="border: 0.5px solid rgba(255,255,255,0.1); margin: 10px 0;">
-
-    <p style="color:#CCCCCC; font-size:14px;">
-        <b>Informasi (Bahasa Indonesia):</b><br>
-        Dashboard ini menampilkan hasil akhir dari seluruh pipeline sistem <b>Visvera AI Interview Evaluation</b> 
-        yang telah dijalankan secara lokal. Data berasal dari tiga sumber utama — <b>verbal</b>, <b>nonverbal</b>, dan <b>final assessment</b> — 
-        yang seluruhnya dihasilkan oleh model buatan tim.<br><br>
-        Dashboard ini berfungsi sebagai media visualisasi utama untuk memperlihatkan hasil penilaian kandidat, alasan penilaian, 
-        serta ringkasan keputusan akhir dari sistem secara terstruktur.
-    </p>
-
-    <p style="font-size:13px; color:#AAAAAA; margin-top:10px;">
-        📁 Data Source: Local pipeline results (JSON output files)
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -133,5 +116,6 @@ with tab3:
         st.success(final_data["overallNotes"])
     else:
         st.warning("⚠️ Data final belum tersedia. Pastikan file `hasil_final_evaluasi_assesment.json` ada di folder `/data`.")
+
 
 
