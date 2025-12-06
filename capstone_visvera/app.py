@@ -7,6 +7,8 @@ from datetime import datetime
 st.set_page_config(page_title="Visvera | Interview Evaluation", layout="wide", page_icon="🧠")
 
 # --- TITLE ---
+import streamlit as st
+
 st.markdown("""
 <div style="
     background-color: rgba(255, 255, 255, 0.04);
@@ -45,6 +47,7 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
